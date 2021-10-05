@@ -4,7 +4,7 @@ description: EC_HAL API
 
 # Embedded Controller HAL
 
-Written by:  Your Name
+Written by:  Daegi Kim
 
 
 
@@ -118,21 +118,46 @@ GPIO_mode(GPIOA, 5, OUTPUT);
 
 
 
-## Class or Header name
+## GPIO_pupdr()
 
 ### Function Name
 
-```text
-
+```c++
+void GPIO_pupdr(GPIO_TypeDef *Port, int pin, int pupd);
 ```
 
 **Parameters**
 
-* p1
-* p2
+* Port: 
+* pin
+* pupd
+
+
 
 **Example code**
 
 ```text
 
 ```
+
+
+
+`header.h`
+
+
+
+The header file is `ecGPIO.h`
+
+
+
+```c
+void main(void)
+{
+	
+}
+```
+
+
+
+
+
