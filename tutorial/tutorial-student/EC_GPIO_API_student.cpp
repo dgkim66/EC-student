@@ -1,4 +1,4 @@
-#include "EC_GPIO_API.h"
+#include "EC_GPIO_API_student.h"
 
 /* System CLOCK is HSI by default */
 
@@ -15,6 +15,7 @@ void EC_DigitalIn::pupdr(int _pupd) {
 */
 
 
+
 EC_DigitalOut::EC_DigitalOut(GPIO_TypeDef *Port, int pin) 
 {
 			uint8_t mode=EC_DOUT;  // mode=1;			
@@ -28,16 +29,22 @@ EC_DigitalOut::EC_DigitalOut(GPIO_TypeDef *Port, int pin)
 void EC_DigitalOut::write(int _outVal)
 {
 	// Exercise
+	GPIO_write(Port_t, pin_t, _outVal);
 }
 
-void EC_DigitalOut::pupdr(int _pupd){
+void EC_DigitalOut::pupdr(int _pupd)
+{
 	// Exercise
+	// int validcheck = assert(_pupd);
+	GPIO_pudr(Port_t, pin_t, _pupd);
 }
 
-void EC_DigitalOut::otype(int _type){
-	// Exercise
+void EC_DigitalOut::otype(int _type)
+{
+	GPIO_otype(Port_t, pin_t, _type);
 }
 
-void EC_DigitalOut::ospeed(int _speed){
-	// Exercise
+void EC_DigitalOut::ospeed(int _speed)
+{
+	GPIO_ospeed(Port_t, pin_t, _speed);
 }

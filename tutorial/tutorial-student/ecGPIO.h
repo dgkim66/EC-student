@@ -6,6 +6,10 @@
 #ifndef __ECGPIO_H
 #define __ECGPIO_H
 
+#ifdef __cplusplus
+ extern "C" {
+#endif /* __cplusplus */
+
 #define INPUT  0x00
 #define OUTPUT 0x01
 #define AF     0x02
@@ -17,12 +21,11 @@
 #define LED_PIN 	5
 #define BUTTON_PIN 13
 
-#ifdef __cplusplus
- extern "C" {
-#endif /* __cplusplus */
+
 	 
 void GPIO_init(GPIO_TypeDef *Port, int pin, int mode);
 void GPIO_write(GPIO_TypeDef *Port, int pin, int Output);
+	 
 int  GPIO_read(GPIO_TypeDef *Port, int pin);
 void GPIO_mode(GPIO_TypeDef* Port, int pin, int mode);
 void GPIO_ospeed(GPIO_TypeDef* Port, int pin, int speed);
