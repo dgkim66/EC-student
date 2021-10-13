@@ -43,7 +43,9 @@ void GPIO_ospeed(GPIO_TypeDef* Port, int pin, int speed);
 void GPIO_otype(GPIO_TypeDef* Port, int pin, int type);
 void GPIO_pudr(GPIO_TypeDef* Port, int pin, int pudr);
 
-
+void sevensegment_init(void);
+void sevensegment_decode(uint8_t	num);
+	
  
 #ifdef __cplusplus
 }
