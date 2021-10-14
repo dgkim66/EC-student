@@ -266,3 +266,49 @@ GPIO_pudr(GPIOA, LED_PIN, PullUp);
 
 
 
+
+
+### sevensegment_init()
+
+Initializes pins with default setting(Output) and Enables GPIO Clock.
+
+Pin : PA5, PA6, PA7, PB6, PC7, PA9, PA8, PB10
+
+```c++
+void sevensegment_init(void);
+```
+
+
+
+**Example code**
+
+```text
+sevensegment_init();
+```
+
+
+
+
+
+
+
+### sevensegment_decode();
+
+Configures Seven Segment pins Output: Low / High
+
+```c++
+void sevensegment_decode(uint8_t num);
+```
+
+**Parameters**
+
+* **num:** Number that want to display (smaller than 10)
+
+
+
+**Example code**
+
+```text
+void sevensegment_decode(cnt % 10);
+```
+
