@@ -312,3 +312,340 @@ void sevensegment_decode(uint8_t num);
 void sevensegment_decode(cnt % 10);
 ```
 
+
+
+
+
+
+
+
+
+### EXTI_init();
+
+Configures External Interrupt (Clock, Connecting GPIO pin, Trigger type, Priority, Enable)
+
+```c++
+void EXTI_init(GPIO_TypeDef *port, int pin, int trig_type, int priority);
+```
+
+**Parameters**
+
+* **port:** GPIO port
+* **pin:** Pin number
+* **trig_type:** Trigger type (RISE = 0, FALL = 1)
+* **priority:** Interrupt priority
+
+
+
+**Example code**
+
+```text
+EXTI_init(GPIOC, BUTTON_PIN, FALL, 0);
+```
+
+
+
+
+
+
+
+
+
+### EXTI_enable();
+
+Set EXTI IMR to enable External Interrupt
+
+```c++
+void EXTI_enable(uint32_t pin);
+```
+
+**Parameters**
+
+* **pin:** Pin number
+
+
+
+**Example code**
+
+```text
+EXTI_enable(BUTTON_PIN);
+```
+
+
+
+
+
+
+
+### EXTI_disable();
+
+Clear EXTI IMR to disable External Interrupt
+
+```c++
+void EXTI_disable(uint32_t pin);
+```
+
+**Parameters**
+
+* **pin:** Pin number
+
+
+
+**Example code**
+
+```text
+EXTI_disable(BUTTON_PIN);
+```
+
+
+
+
+
+
+
+### is_pending_EXTI();
+
+Return the checked value of interrupt pending
+
+```c++
+uint32_t is_pending_EXTI(uint32_t pin);
+```
+
+**Parameters**
+
+* **pin:** Pin number
+
+
+
+**Example code**
+
+```text
+if(is_pending_EXTI(BUTTONPIN)){}
+```
+
+
+
+
+
+
+
+### clear_pending_EXTI();
+
+Clear the pending flag by writing '1'
+
+```c++
+void clear_pending_EXTI(uint32_t pin);
+```
+
+**Parameters**
+
+* **pin:** Pin number
+
+
+
+**Example code**
+
+```text
+clear_pending_EXTI(BUTTON_PIN);
+```
+
+
+
+
+
+
+
+
+
+### EXTIx_IRQHandler();
+
+Run the function when external interrupting
+
+```c++
+void EXTIx_IRQHandler(int pin);
+```
+
+**Parameters**
+
+* **pin:** Pin number
+
+
+
+**Example code**
+
+```text
+EXTIx_IRQHandler(BUTTON_PIN);
+```
+
+
+
+
+
+
+
+
+
+### SysTick_init();
+
+Set the SysTick (Load, Initial Value, Control Value, Enable)
+
+```c++
+void SysTick_init(uint32_t msec);
+```
+
+**Parameters**
+
+* **msec:** interrupting period (ms)
+
+
+
+**Example code**
+
+```text
+SysTick_init(1);
+```
+
+
+
+
+
+
+
+
+
+### delay_ms();
+
+Delay the time (ms)
+
+```c++
+void delay_ms(uint32_t msec);
+```
+
+**Parameters**
+
+* **msec:** Delaying time (ms)
+
+
+
+**Example code**
+
+```text
+delay_ms(1000);
+```
+
+
+
+
+
+
+
+
+
+### SysTick_val();
+
+Return the time value of the (function end - function start)
+
+```c++
+uint32_t SysTick_val(void);
+```
+
+
+
+**Example code**
+
+```text
+SysTick_val(void);
+```
+
+
+
+
+
+
+
+### SysTick_enable();
+
+Set the SysTick Control to make SysTick enable
+
+```c++
+void SysTick_enable(void);
+```
+
+
+
+**Example code**
+
+```text
+SysTick_enable();
+```
+
+
+
+
+
+
+
+### SysTick_disable();
+
+Clear the SysTick Control to make SysTick disable
+
+```c++
+void SysTick_disable(void);
+```
+
+
+
+**Example code**
+
+```text
+SysTick_disable();
+```
+
+
+
+
+
+
+
+### SysTick_reset();
+
+Reset the SysTick Value
+
+```c++
+void SysTick_reset(void);
+```
+
+
+
+**Example code**
+
+```text
+SysTick_reset();
+```
+
+
+
+
+
+
+
+### SysTick_Handler();
+
+Function operate when SysTick is interrupting
+
+```c++
+void SysTick_Handler(void);
+```
+
+
+
+**Example code**
+
+```text
+SysTick_Handler();
+```
+
+
+
+
+
