@@ -10,6 +10,7 @@
       <TargetName>Target 1</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
+      <pCCUsed>6160000::V6.16::ARMCLANG</pCCUsed>
       <uAC6>1</uAC6>
       <TargetOption>
         <TargetCommonOption>
@@ -411,6 +412,46 @@
               <FileName>ecRCC.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\..\include\ecRCC.h</FilePath>
+            </File>
+            <File>
+              <FileName>ecEXTI.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\include\ecEXTI.c</FilePath>
+            </File>
+            <File>
+              <FileName>ecEXTI.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\include\ecEXTI.h</FilePath>
+            </File>
+            <File>
+              <FileName>ecSysTick.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\include\ecSysTick.c</FilePath>
+            </File>
+            <File>
+              <FileName>ecSysTick.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\include\ecSysTick.h</FilePath>
+            </File>
+            <File>
+              <FileName>ecPWM.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\include\ecPWM.c</FilePath>
+            </File>
+            <File>
+              <FileName>ecPWM.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\include\ecPWM.h</FilePath>
+            </File>
+            <File>
+              <FileName>ecTIM.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\include\ecTIM.c</FilePath>
+            </File>
+            <File>
+              <FileName>ecTIM.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\include\ecTIM.h</FilePath>
             </File>
           </Files>
         </Group>

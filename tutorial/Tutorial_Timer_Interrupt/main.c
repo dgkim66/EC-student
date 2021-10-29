@@ -10,13 +10,17 @@
 #include "stm32f411xe.h"
 #include "ecGPIO.h"
 #include "ecRCC.h"
-#include "ecTIM.h"
-
-uint32_t _count = 0;
+//#include "ecTIM.h"
 
 #define LED_PIN 	5
 
+uint32_t _count=0;
+
 void setup(void);
+
+void TIM2_IRQHandler(void);
+
+void LED_toggle(void);
 	
 int main(void) { 
 	// Initialiization --------------------------------------------------------
@@ -25,13 +29,13 @@ int main(void) {
 	timerx = TIM2;
 	RCC->APB1ENR |= RCC_APB1ENR_TIM2EN;
 	
-	timerx->PSC = 840-1;							        // Timer counter clock: 1MHz(1us)
-	timerx->ARR = 100-1;									    // Set auto reload register to maximum (count up to 65535)
-	timerx->DIER |= 1<<0;                    // Enable Interrupt
-	timerx->CR1 |= 1<<0;                     // Enable counter
+	timerx->PSC = 840-1;							         // Timer counter clock: 1MHz(1us)
+	timerx->ARR = 100-1;					 	   	    // Set auto reload register to maximum (count up to 65535)
+	timerx->DIER |= TIM_DIER_UIE;                    // Enable Interrupt
+	timerx->CR1 |= TIM_CR1_CEN;                     // Enable counter
 	
 	NVIC_EnableIRQ(TIM2_IRQn);				            // TIM2_IRQHandler Enable
-	NVIC_SetPriority( TIM2_IRQn, 2);               // TIM2_IRQHandler Set priority as 2
+	NVIC_SetPriority(TIM2_IRQn, 2);               // TIM2_IRQHandler Set priority as 2
 	
 	// Inifinite Loop ----------------------------------------------------------
 	while(1){}
@@ -45,9 +49,22 @@ void setup(void)
 }
 
 void TIM2_IRQHandler(void){
-	if((TIM2->SR & TIM_SR_UIF) != 0){ // update interrupt flag
+	if((TIM2->SR & TIM_SR_UIF) == TIM_SR_UIF){ // update interrupt flag
 		//Create the code to toggle LED by 1000ms
-		TIM2->SR &= ~(1UL<<0);         // clear by writing 0
+		_count++;
+		if(_count > 1000){
+			LED_toggle();
+			_count=0;
+		}
+		TIM2->SR &= ~TIM_SR_UIF;         // clear by writing 0
 	}
+	
+}
+
+void LED_toggle(void){
+	
+	//GPIO_write(GPIOA, LED_PIN, !GPIO_read(GPIOA, LED_PIN));
+	
+	GPIOA->ODR ^= 1UL << LED_PIN;
 	
 }
