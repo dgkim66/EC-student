@@ -8,6 +8,7 @@
 
 void SysTick_init(uint32_t msec);
 void delay_ms(uint32_t msec);
+void delay_us(uint32_t usec);
 uint32_t SysTick_val(void);
 void SysTick_enable(void);
 void SysTick_disable(void);

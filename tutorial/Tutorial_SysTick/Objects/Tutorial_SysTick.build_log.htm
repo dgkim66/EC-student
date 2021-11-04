@@ -27,21 +27,18 @@ Project File Date:  10/22/2021
 <h2>Output:</h2>
 *** Using Compiler 'V6.16', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
 Build target 'Target 1'
-../../include/ecSysTick.c(13): warning: implicit conversion turns floating-point number into integer: 'double' to 'uint32_t' (aka 'unsigned int') [-Wfloat-conversion]
-        SysTick->LOAD = (msec * 0.001 * MCU_CLK_PLL) - 1;
-                      ~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
-../../include/ecSysTick.c(7): warning: no previous extern declaration for non-static variable 'TimeDelay' [-Wmissing-variable-declarations]
-volatile uint32_t TimeDelay;
-                  ^
-../../include/ecSysTick.c(7): note: declare 'static' if the variable is not intended to be used outside of this translation unit
-volatile uint32_t TimeDelay;
-         ^
-2 warnings generated.
-compiling ecSysTick.c...
+main.c(25): warning: no previous extern declaration for non-static variable 'count' [-Wmissing-variable-declarations]
+int count = 0;// Initialiization 
+    ^
+main.c(25): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+int count = 0;// Initialiization 
+^
+1 warning generated.
+compiling main.c...
 linking...
-Program Size: Code=3656 RO-data=760 RW-data=4 ZI-data=1644  
+Program Size: Code=3448 RO-data=440 RW-data=4 ZI-data=1644  
 FromELF: creating hex file...
-".\Objects\Tutorial_SysTick.axf" - 0 Error(s), 2 Warning(s).
+".\Objects\Tutorial_SysTick.axf" - 0 Error(s), 1 Warning(s).
 
 <h2>Software Packages used:</h2>
 

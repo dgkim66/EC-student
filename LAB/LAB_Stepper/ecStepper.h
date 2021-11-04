@@ -12,6 +12,7 @@
 //State mode
 #define HALF 0
 #define FULL 1	 
+#define MicroStep 2
 	 
 /* Stepper Motor */
 //stepper motor function
@@ -30,10 +31,12 @@ typedef struct{
 
 	 
 void Stepper_init(GPIO_TypeDef* port1, int pin1, GPIO_TypeDef* port2, int pin2, GPIO_TypeDef* port3, int pin3, GPIO_TypeDef* port4, int pin4);
-void Stepper_setSpeed (long whatSpeed);
+void Stepper_setSpeed (long whatSpeed, int mode);
 void Stepper_step(int steps, int direction, int mode); 
 void Stepper_run (int direction, int mode); 
 void Stepper_stop (void);
+void Stepper_pinOut (uint32_t state, int mode);
+
 
 #ifdef __cplusplus
 }

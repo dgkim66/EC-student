@@ -6,11 +6,11 @@
 
 volatile uint32_t TimeDelay;
 
-void SysTick_init(uint32_t msec){
+void SysTick_init(){    // init as a usec
 	
 	SysTick_disable();
 	
-	SysTick->LOAD = (msec * 0.001 * MCU_CLK_PLL) - 1;
+	SysTick->LOAD = (0.000001 * MCU_CLK_PLL) - 1;
 	
 	NVIC_SetPriority(SysTick_IRQn,  0);
 	
@@ -26,7 +26,15 @@ void SysTick_init(uint32_t msec){
 
 void delay_ms(uint32_t msec){
 	
-	TimeDelay = msec;
+	TimeDelay = msec * 1000;
+	
+	while(TimeDelay != 0);
+	
+}
+
+void delay_us(uint32_t usec){
+	
+	TimeDelay = usec;
 	
 	while(TimeDelay != 0);
 	

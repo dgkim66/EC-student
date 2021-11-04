@@ -4,6 +4,8 @@
 ".\objects\ecrcc.o"
 ".\objects\ecexti.o"
 ".\objects\ecsystick.o"
+".\objects\ecpwm.o"
+".\objects\ectim.o"
 ".\objects\startup_stm32f411xe.o"
 ".\objects\system_stm32f4xx.o"
 --strict --scatter ".\Objects\Tutorial_TIM_Interrupt.sct"

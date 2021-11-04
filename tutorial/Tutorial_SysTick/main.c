@@ -35,7 +35,7 @@ int main(void) {
 	
 	// Inifinite Loop ----------------------------------------------------------	
 	while(1){		
-		sevensegment_decode(count);
+		GPIOA->ODR ^= 1UL << LED_PIN;
 		delay_ms(1000);
 		count++;
 		if (count == 10) count = 0;

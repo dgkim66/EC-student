@@ -39,14 +39,22 @@ void EXTI_init(GPIO_TypeDef *port, int pin, int trig_type, int priority){
 	SYSCFG->EXTICR[pin/4] |= (numb<<((pin-12)*4));     // 
 
 	// Falling trigger enable (Button: pull-up)
-	//EXTI->FTSR &= ~(1UL << pin);
+	EXTI->RTSR &= ~(1 << pin);
+	EXTI->FTSR &= ~(1 << pin);
+	EXTI->RTSR |= ~trig_type << pin;
 	EXTI->FTSR |= trig_type << pin;
 	
 	EXTI_enable(pin);
 
 	// Interrupt IRQn, Priority
-	NVIC_EnableIRQ(EXTI15_10_IRQn); 			// Enable EXTI
-	NVIC_SetPriority(EXTI15_10_IRQn, priority);  		// Set EXTI priority
+	if(pin >= 5 && pin <= 9){
+		NVIC_EnableIRQ(EXTI9_5_IRQn); 			// Enable EXTI
+		NVIC_SetPriority(EXTI9_5_IRQn, priority);  		// Set EXTI priority
+	}
+	else if(pin >= 10 && pin <= 15){
+		NVIC_EnableIRQ(EXTI15_10_IRQn); 			// Enable EXTI
+		NVIC_SetPriority(EXTI15_10_IRQn, priority);  		// Set EXTI priority
+	}
 	 
 	
 	

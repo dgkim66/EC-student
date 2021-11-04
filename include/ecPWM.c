@@ -35,6 +35,10 @@ void PWM_init(PWM_t *pwm, GPIO_TypeDef *port, int pin){
 		else if(TIMx == TIM3 || TIMx == TIM4 || TIMx == TIM5) AFRLy = 0x02;
 		else if(TIMx == TIM9 || TIMx == TIM10 || TIMx == TIM11) AFRLy = 0x03;
 	
+		port->AFR[pin >> 3] &= ~(AFRLy << (4 * (pin & 8)));
+		port->AFR[pin >> 3] |=  (AFRLy << (4 * (pin & 8)));
+		
+/*	
 		if(pin <= 7){
 			port->AFR[0] &= ~(15UL << (4 * pin));
 			port->AFR[0] |= AFRLy << (4 * pin);
@@ -43,6 +47,7 @@ void PWM_init(PWM_t *pwm, GPIO_TypeDef *port, int pin){
 			port->AFR[1] &= ~(15UL << (4 * pin - 8));
 			port->AFR[1] |= AFRLy << (4 * (pin - 8));
 		}
+*/
 
 			
 // 3. Initialize Timer 
@@ -50,7 +55,7 @@ void PWM_init(PWM_t *pwm, GPIO_TypeDef *port, int pin){
 
 // 3-2. Direction of Counter
 		//YOUR CODE GOES HERE
-		TIMx->CR1 &= ~TIM_CR1_DIR;    // Counting direction: 0 = up-counting, 1 = down-counting
+		TIMx->CR1 |= TIM_CR1_DIR;    // Counting direction: 0 = up-counting, 1 = down-counting
 	
 			
 // 4. Configure Timer Output mode as PWM
@@ -93,17 +98,18 @@ void PWM_init(PWM_t *pwm, GPIO_TypeDef *port, int pin){
 // 5. Enable Timer Counter
 	if(TIMx == TIM1) TIMx->BDTR |= TIM_BDTR_MOE;					// Main output enable (MOE): 0 = Disable, 1 = Enable	
 	TIMx->CR1  |= TIM_CR1_CEN;  													// Enable counter
+	TIM_INT_enable(TIMx);
 }
 
 
 void PWM_period_ms(PWM_t *PWM_pin, uint32_t msec){
 	TIM_TypeDef *TIMx = PWM_pin->timer;
-	TIM_period_ms(TIMx, msec);  //YOUR CODE GOES HERE
+	TIM_period_ms(TIMx, msec);  
 }
 
 void PWM_period_us(PWM_t *PWM_pin, uint32_t usec){
 	TIM_TypeDef *TIMx = PWM_pin->timer;
-	TIM_period_us(TIMx, usec); 	//YOUR CODE GOES HERE
+	TIM_period_us(TIMx, usec); 
 }
 
 
@@ -119,7 +125,7 @@ void PWM_pulsewidth_ms(PWM_t *pwm, float pulse_width_ms){
 	
 	//YOUR CODE GOES HERE
 	float fclk = fsys/(psc+1);					// fclk=fsys/(psc+1);
-	uint32_t ccval = pulse_width_ms * fclk;					// width_ms *fclk - 1;
+	uint32_t ccval = pulse_width_ms * fclk;					// width_ms *fclk;
 	
 	//YOUR CODE GOES HERE
 	switch(CHn){
@@ -136,7 +142,7 @@ void   PWM_duty(PWM_t *pwm, float duty) {                 //  duty=0 to 1
 	
 		TIM_TypeDef *TIMx = pwm->timer;
 
-		float ccval = (TIMx->ARR + 1)*duty;    								// (ARR+1)*dutyRatio - 1          
+		float ccval = (TIMx->ARR + 1) * duty;    								// (ARR+1)*dutyRatio - 1          
 		int CHn = pwm->ch;
   
 		switch(CHn){

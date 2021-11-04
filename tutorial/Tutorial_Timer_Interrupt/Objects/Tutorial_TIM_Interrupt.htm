@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\Tutorial_TIM_Interrupt.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\Tutorial_TIM_Interrupt.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6160001: Last Updated: Fri Oct 22 16:42:17 2021
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6160001: Last Updated: Fri Oct 29 16:43:13 2021
 <BR><P>
 <H3>Maximum Stack Usage =         32 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -538,7 +538,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_init
 </UL>
 
-<P><STRONG><a name="[5f]"></a>LED_toggle</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, main.o(.text.LED_toggle))
+<P><STRONG><a name="[5f]"></a>LED_toggle</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, main.o(.text.LED_toggle))
 <BR><BR>[Called By]<UL><LI><a href="#[22]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM2_IRQHandler
 </UL>
 
@@ -585,7 +585,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_main
 </UL>
 
-<P><STRONG><a name="[60]"></a>setup</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, main.o(.text.setup))
+<P><STRONG><a name="[60]"></a>setup</STRONG> (Thumb, 24 bytes, Stack size 8 bytes, main.o(.text.setup))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = setup &rArr; GPIO_init &rArr; GPIO_mode
 </UL>
 <BR>[Calls]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_PLL_init

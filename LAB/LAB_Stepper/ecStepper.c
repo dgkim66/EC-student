@@ -1,5 +1,6 @@
 #include "stm32f4xx.h"
 #include "ecStepper.h"
+#include "ecSysTick.h"
 
 //State number 
 #define S0 0
@@ -15,11 +16,15 @@
 // Stepper Motor function
 uint32_t direction = 1; 
 uint32_t step_delay = 100; 
+uint32_t ustep_delay = 100000; 
 uint32_t step_per_rev = 64;
+uint32_t gear_ratio = 32;
+
 	 
 
 // Stepper Motor variable
 volatile Stepper_t myStepper; 
+volatile uint32_t step_mode;
 
 
 //FULL stepping sequence  - FSM
@@ -59,10 +64,13 @@ void Stepper_init(GPIO_TypeDef* port1, int pin1, GPIO_TypeDef* port2, int pin2, 
 //  GPIO Digital Out Initiation
 	 myStepper.port1 = port1;
    myStepper.pin1  = pin1;
+	
 	 myStepper.port2 = port2;
    myStepper.pin2  = pin2;
+	
 	 myStepper.port3 = port3;
    myStepper.pin3  = pin3;
+	
 	 myStepper.port4 = port4;
    myStepper.pin4  = pin4;
 	
@@ -81,6 +89,12 @@ void Stepper_init(GPIO_TypeDef* port1, int pin1, GPIO_TypeDef* port2, int pin2, 
 		GPIO_pudr(port3, pin3, NOPUPD);
 		GPIO_pudr(port4, pin4, NOPUPD);
 		
+		GPIO_otype(port1, pin1, PushPull);
+		GPIO_otype(port2, pin2, PushPull);
+		GPIO_otype(port3, pin3, PushPull);
+		GPIO_otype(port4, pin4, PushPull);
+	
+		
 		GPIO_ospeed(port1, pin1, FastSpeed);
 		GPIO_ospeed(port2, pin2, FastSpeed);
 		GPIO_ospeed(port3, pin3, FastSpeed);
@@ -92,48 +106,43 @@ void Stepper_init(GPIO_TypeDef* port1, int pin1, GPIO_TypeDef* port2, int pin2, 
 void Stepper_pinOut (uint32_t state, int mode){
 	
 	   if (mode ==FULL){         // FULL mode
-			GPIO_write(myStepper.port1, myStepper.pin1, (FSM_full[state].out >> 3) & 1UL);
-  		GPIO_write(myStepper.port2, myStepper.pin2, (FSM_full[state].out >> 2) & 1UL);
-			GPIO_write(myStepper.port3, myStepper.pin3, (FSM_full[state].out >> 1) & 1UL);
-			GPIO_write(myStepper.port4, myStepper.pin4, (FSM_full[state].out >> 0) & 1UL);
-
+			GPIO_write(myStepper.port1, myStepper.pin1, ((FSM_full[state].out & 8UL) >> 3));
+  		GPIO_write(myStepper.port2, myStepper.pin2, ((FSM_full[state].out & 4UL) >> 2));
+			GPIO_write(myStepper.port3, myStepper.pin3, ((FSM_full[state].out & 2UL) >> 1));
+			GPIO_write(myStepper.port4, myStepper.pin4, ((FSM_full[state].out & 1UL) >> 0));
+			
 			}	 
 		 else if (mode ==HALF){    // HALF mode
-			GPIO_write(myStepper.port1, myStepper.pin1, (FSM_half[state].out >> 3) & 1UL);
-  		GPIO_write(myStepper.port2, myStepper.pin2, (FSM_half[state].out >> 2) & 1UL);
-			GPIO_write(myStepper.port3, myStepper.pin3, (FSM_half[state].out >> 1) & 1UL);
-			GPIO_write(myStepper.port4, myStepper.pin4, (FSM_half[state].out >> 0) & 1UL);
+			GPIO_write(myStepper.port1, myStepper.pin1, ((FSM_half[state].out & 8UL) >> 3));
+  		GPIO_write(myStepper.port2, myStepper.pin2, ((FSM_half[state].out & 4UL) >> 2));
+			GPIO_write(myStepper.port3, myStepper.pin3, ((FSM_half[state].out & 2UL) >> 1));
+			GPIO_write(myStepper.port4, myStepper.pin4, ((FSM_half[state].out & 1UL) >> 0));
 			}
 }
 
 
-void Stepper_setSpeed (long whatSpeed){      // rppm
-		step_delay = 	whatSpeed / 60 / 1000 * 4; // Convert rpm to milli sec
+void Stepper_setSpeed (long whatSpeed, int mode){      // rppm
+	
+		int step_mode = 0;
+		if(mode == FULL) step_mode = 1;
+		else if(mode == HALF) step_mode = 2;
+	
+		step_delay = (uint32_t)(60000)/(step_per_rev * gear_ratio * step_mode * whatSpeed); // Convert rpm to milli sec
+		ustep_delay = (uint32_t)(60000000)/(step_per_rev * gear_ratio * step_mode * whatSpeed); // Convert rpm to micro sec
 }
 
 
-void Stepper_step(int steps, int direction,int mode){
-	 int step_number = 0;
+void Stepper_step(int steps, int direction, int mode){
+
 	 myStepper._step_num = steps;
-	 int state_number = 0;
-	 int max_step = 3;
-	 if (mode == HALF) max_step = 7;
-	 
+	 uint32_t state_number = 0;
 	
 	 for(;myStepper._step_num>0;myStepper._step_num--){ // run for step size
-				// YOUR CODE                                  // delay (step_delay); 
-				
-		    if(direction) step_number++;                  // + direction step number++
-				// YOUR CODE                                  // - direction step number--
-				
-				// YOUR CODE                   								//  step_number must be 0 to max_step
-		    step_number=_____________// YOUR CODE 
-				
+				//delay_ms(step_delay);                         // delay (step_delay); 
+				delay_us(ustep_delay);                        // delay (ustep_delay);
 		 
-		    if (mode == FULL) 		 												
-						state_number = step_number % 4; // YOUR CODE       // state_number = 0 to 3 for FULL step mode
-				else if (mode == HALF) 
-						state_number = step_number % 8;// YOUR CODE       // state_number = 0 to 7 for HALF step mode					
+				if (mode == FULL) state_number = FSM_full[state_number].next[!direction];
+				else if (mode == HALF) state_number = FSM_half[state_number].next[!direction]; 
 				
 				Stepper_pinOut(state_number, mode);
    }

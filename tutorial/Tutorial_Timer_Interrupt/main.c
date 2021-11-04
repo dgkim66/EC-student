@@ -12,7 +12,7 @@
 #include "ecRCC.h"
 //#include "ecTIM.h"
 
-#define LED_PIN 	5
+#define LED_PIN 	6
 
 uint32_t _count=0;
 
@@ -45,7 +45,7 @@ int main(void) {
 void setup(void)
 {	
 	RCC_PLL_init();                       // System Clock = 84MHz
-	GPIO_init(GPIOA, LED_PIN, OUTPUT);    // calls RCC_GPIOA_enable()	
+	GPIO_init(GPIOB, LED_PIN, OUTPUT);    // calls RCC_GPIOA_enable()	
 }
 
 void TIM2_IRQHandler(void){
@@ -65,6 +65,6 @@ void LED_toggle(void){
 	
 	//GPIO_write(GPIOA, LED_PIN, !GPIO_read(GPIOA, LED_PIN));
 	
-	GPIOA->ODR ^= 1UL << LED_PIN;
+	GPIOB->ODR ^= 1UL << LED_PIN;
 	
 }
