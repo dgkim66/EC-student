@@ -21,8 +21,8 @@ Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.0.9.0
 Dialog DLL:      TCM.DLL V1.53.0.0
  
 <h2>Project:</h2>
-C:\Users\New\source\repos\GithubDesktop\EC-student\tutorial\Tutorial_ADC\Tutorial_ADC.uvprojx
-Project File Date:  11/11/2021
+C:\Users\New\source\repos\GithubDesktop\EC-student\LAB\LAB_ADC_IR\LAB_ADC_IR.uvprojx
+Project File Date:  11/12/2021
 
 <h2>Output:</h2>
 *** Using Compiler 'V6.16', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
@@ -39,56 +39,47 @@ void UART2_init();
 ../../include\ecUART.h(14): warning: no newline at end of file [-Wnewline-eof]
 #endif
       ^
-main.c(17): warning: no previous extern declaration for non-static variable 'result_v' [-Wmissing-variable-declarations]
-uint32_t result_v =0;
-         ^
-main.c(17): note: declare 'static' if the variable is not intended to be used outside of this translation unit
-uint32_t result_v =0;
-^
-main.c(18): warning: no previous extern declaration for non-static variable 'print_flag' [-Wmissing-variable-declarations]
-uint32_t print_flag = 0;
-         ^
-main.c(18): note: declare 'static' if the variable is not intended to be used outside of this translation unit
-uint32_t print_flag = 0;
-^
-main.c(99): warning: no previous prototype for function 'ADC_IRQHandler' [-Wmissing-prototypes]
-void ADC_IRQHandler(void){
-     ^
-main.c(99): note: declare 'static' if the function is not intended to be used outside of this translation unit
-void ADC_IRQHandler(void){
-^
-static 
-6 warnings generated.
-compiling main.c...
-../../include/ecADC.c(5): warning: In file included from...
-../../include/ecTIM.h(67): warning: no newline at end of file [-Wnewline-eof]
+main.c(16): warning: In file included from...
+../../include\ecADC_student.h(36): warning: no newline at end of file [-Wnewline-eof]
 #endif
       ^
-../../include/ecADC.c(12): warning: unused parameter 'mode' [-Wunused-parameter]
-void ADC_init(GPIO_TypeDef* port, int pin, int mode) {  //mode 0 : SW, 1 : TRGO
-                                               ^
-../../include/ecADC.c(12): warning: no previous prototype for function 'ADC_init' [-Wmissing-prototypes]
-void ADC_init(GPIO_TypeDef* port, int pin, int mode) {  //mode 0 : SW, 1 : TRGO
+main.c(19): warning: no previous extern declaration for non-static variable 'result_L' [-Wmissing-variable-declarations]
+uint32_t result_L =0;
+         ^
+main.c(19): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+uint32_t result_L =0;
+^
+main.c(20): warning: no previous extern declaration for non-static variable 'result_R' [-Wmissing-variable-declarations]
+uint32_t result_R =0;
+         ^
+main.c(20): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+uint32_t result_R =0;
+^
+main.c(21): warning: no previous extern declaration for non-static variable 'gapVal' [-Wmissing-variable-declarations]
+uint32_t gapVal = 1500;
+         ^
+main.c(21): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+uint32_t gapVal = 1500;
+^
+main.c(22): warning: no previous extern declaration for non-static variable 'flag' [-Wmissing-variable-declarations]
+uint32_t flag = 0;
+         ^
+main.c(22): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+uint32_t flag = 0;
+^
+main.c(65): warning: no previous prototype for function 'ADC_IRQHandler' [-Wmissing-prototypes]
+void ADC_IRQHandler(void){
      ^
-../../include/ecADC.c(12): note: declare 'static' if the function is not intended to be used outside of this translation unit
-void ADC_init(GPIO_TypeDef* port, int pin, int mode) {  //mode 0 : SW, 1 : TRGO
+main.c(65): note: declare 'static' if the function is not intended to be used outside of this translation unit
+void ADC_IRQHandler(void){
 ^
 static 
-../../include/ecADC.c(112): warning: non-void function does not return a value in all control paths [-Wreturn-type]
-}
-^
-../../include/ecADC.c(7): warning: no previous extern declaration for non-static variable 'result' [-Wmissing-variable-declarations]
-uint32_t result;
-         ^
-../../include/ecADC.c(7): note: declare 'static' if the variable is not intended to be used outside of this translation unit
-uint32_t result;
-^
-5 warnings generated.
-compiling ecADC.c...
+9 warnings generated.
+compiling main.c...
 linking...
-Program Size: Code=7220 RO-data=616 RW-data=4 ZI-data=1652  
+Program Size: Code=3500 RO-data=440 RW-data=8 ZI-data=1656  
 FromELF: creating hex file...
-".\Objects\Tutorial_ADC.axf" - 0 Error(s), 11 Warning(s).
+".\Objects\LAB_ADC_IR.axf" - 0 Error(s), 9 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -119,7 +110,7 @@ Package Vendor: Keil
       Include file:  Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
       Source file:   MDK\Device\Source\ARM\STM32F411xx_OPT.s
       Source file:   Drivers\CMSIS\Device\ST\STM32F4xx\Source\Templates\system_stm32f4xx.c
-Build Time Elapsed:  00:00:02
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>

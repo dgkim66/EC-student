@@ -4,6 +4,7 @@
 #include "ecGPIO.h"
 #include "ecTIM.h"
 #include <stdint.h>
+
 uint32_t result;
 
 
@@ -41,7 +42,7 @@ void ADC_init(GPIO_TypeDef* port, int pin, int mode) {  //mode 0 : SW, 1 : TRGO
 		//Regular: SQRx, Injection: JSQx
 
 // 3. Repetition: Single or Continuous conversion
-	ADC1->CR2 |= ADC_CR2_CONT;      			// Enable Continuous conversion mode	
+	ADC1->CR2 &= ~ADC_CR2_CONT;      			// Enable Continuous conversion mode	
 
 // 4. Single Channel or Scan mode
 	//  - Single Channel: scan mode, right alignment
