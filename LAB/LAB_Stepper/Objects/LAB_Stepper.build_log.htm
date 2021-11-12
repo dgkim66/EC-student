@@ -105,23 +105,10 @@ volatile uint32_t step_mode;
          ^
 15 warnings generated.
 compiling ecStepper.c...
-main.c(13): warning: In file included from...
-../../include\ecTIM.h(36): warning: no newline at end of file [-Wnewline-eof]
-#endif
-      ^
-main.c(16): warning: In file included from...
-./ecStepper.h(45): warning: no newline at end of file [-Wnewline-eof]
-#endif
-      ^
-main.c(29): warning: empty expression statement has no effect; remove unnecessary ';' to silence this warning [-Wextra-semi-stmt]
-        while(1) {;}
-                  ^
-3 warnings generated.
-compiling main.c...
 linking...
-Program Size: Code=3792 RO-data=440 RW-data=352 ZI-data=1672  
+Program Size: Code=2272 RO-data=440 RW-data=352 ZI-data=1672  
 FromELF: creating hex file...
-".\Objects\LAB_Stepper.axf" - 0 Error(s), 18 Warning(s).
+".\Objects\LAB_Stepper.axf" - 0 Error(s), 15 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -147,10 +134,10 @@ Package Vendor: Keil
    * Component: ARM::CMSIS:CORE:5.5.0
 
    * Component: Keil::Device:Startup:2.6.3
-      Include file:  Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
+      Source file:   MDK\Device\Source\ARM\STM32F4xx_OTP.s
       Source file:   MDK\Device\Source\ARM\STM32F411xx_OPT.s
       Source file:   Drivers\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm\startup_stm32f411xe.s
-      Source file:   MDK\Device\Source\ARM\STM32F4xx_OTP.s
+      Include file:  Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
       Source file:   Drivers\CMSIS\Device\ST\STM32F4xx\Source\Templates\system_stm32f4xx.c
 Build Time Elapsed:  00:00:01
 </pre>

@@ -3,7 +3,6 @@
 #include "stm32f411xe.h"
 #include "ecGPIO.h"
 
-
 #define FALL				0x1UL
 #define RISE				0x0UL
 

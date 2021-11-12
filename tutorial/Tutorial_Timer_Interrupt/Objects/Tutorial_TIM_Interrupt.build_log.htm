@@ -27,12 +27,6 @@ Project File Date:  10/22/2021
 <h2>Output:</h2>
 *** Using Compiler 'V6.16', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
 Build target 'Target 1'
-main.c(15): warning: 'LED_PIN' macro redefined [-Wmacro-redefined]
-#define LED_PIN         6
-        ^
-../../include\ecGPIO.h(30): note: previous definition is here
-#define LED_PIN         5
-        ^
 main.c(17): warning: no previous extern declaration for non-static variable '_count' [-Wmissing-variable-declarations]
 uint32_t _count=0;
          ^
@@ -42,26 +36,12 @@ uint32_t _count=0;
 main.c(70): warning: no newline at end of file [-Wnewline-eof]
 }
  ^
-3 warnings generated.
+2 warnings generated.
 compiling main.c...
-../../include/ecEXTI.c(44): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-        EXTI->RTSR |= ~trig_type << pin;
-                   ~~ ~~~~~~~~~~~^~~~~~
-../../include/ecEXTI.c(45): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-        EXTI->FTSR |= trig_type << pin;
-                   ~~ ~~~~~~~~~~^~~~~~
-../../include/ecEXTI.c(47): warning: implicit conversion changes signedness: 'int' to 'uint32_t' (aka 'unsigned int') [-Wsign-conversion]
-        EXTI_enable(pin);
-        ~~~~~~~~~~~ ^~~
-../../include/ecEXTI.c(80): warning: no newline at end of file [-Wnewline-eof]
-}
- ^
-4 warnings generated.
-compiling ecEXTI.c...
 linking...
-Program Size: Code=1108 RO-data=440 RW-data=4 ZI-data=1644  
+Program Size: Code=1100 RO-data=440 RW-data=4 ZI-data=1644  
 FromELF: creating hex file...
-".\Objects\Tutorial_TIM_Interrupt.axf" - 0 Error(s), 7 Warning(s).
+".\Objects\Tutorial_TIM_Interrupt.axf" - 0 Error(s), 2 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -88,9 +68,9 @@ Package Vendor: Keil
 
    * Component: Keil::Device:Startup:2.6.3
       Include file:  Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
-      Source file:   Drivers\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm\startup_stm32f411xe.s
       Source file:   MDK\Device\Source\ARM\STM32F411xx_OPT.s
       Source file:   MDK\Device\Source\ARM\STM32F4xx_OTP.s
+      Source file:   Drivers\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm\startup_stm32f411xe.s
       Source file:   Drivers\CMSIS\Device\ST\STM32F4xx\Source\Templates\system_stm32f4xx.c
 Build Time Elapsed:  00:00:01
 </pre>

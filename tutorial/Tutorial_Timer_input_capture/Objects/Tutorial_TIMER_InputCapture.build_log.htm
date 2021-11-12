@@ -1,0 +1,127 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: •ÏVision V5.36.0.0
+Copyright (C) 2021 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: Daegi Kim, Handong University, LIC=----
+ 
+Tool Versions:
+Toolchain:       MDK-Lite  Version: 5.36.0.0
+Toolchain Path:  C:\Keil_v5\ARM\ARMCLANG\Bin
+C Compiler:      ArmClang.exe V6.16
+Assembler:       Armasm.exe V6.16
+Linker/Locator:  ArmLink.exe V6.16
+Library Manager: ArmAr.exe V6.16
+Hex Converter:   FromElf.exe V6.16
+CPU DLL:         SARMCM3.DLL V5.36.0.0
+Dialog DLL:      DCM.DLL V1.17.3.0
+Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.0.9.0
+Dialog DLL:      TCM.DLL V1.53.0.0
+ 
+<h2>Project:</h2>
+C:\Users\New\source\repos\GithubDesktop\EC-student\tutorial\Tutorial_Timer_input_capture\Tutorial_TIMER_InputCapture.uvprojx
+Project File Date:  11/04/2021
+
+<h2>Output:</h2>
+*** Using Compiler 'V6.16', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
+Build target 'Target 1'
+main.c(16): warning: In file included from...
+../../include\ecTIM.h(36): warning: no newline at end of file [-Wnewline-eof]
+#endif
+      ^
+main.c(17): warning: In file included from...
+../../include\ecUART.h(8): warning: this function declaration is not a prototype [-Wstrict-prototypes]
+void UART2_init();
+               ^
+                void
+../../include\ecUART.h(14): warning: no newline at end of file [-Wnewline-eof]
+#endif
+      ^
+main.c(19): warning: no previous extern declaration for non-static variable 'ovf_cnt' [-Wmissing-variable-declarations]
+uint32_t ovf_cnt = 0;
+         ^
+main.c(19): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+uint32_t ovf_cnt = 0;
+^
+main.c(20): warning: no previous extern declaration for non-static variable 'ccr2' [-Wmissing-variable-declarations]
+uint32_t ccr2 = 1000;
+         ^
+main.c(20): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+uint32_t ccr2 = 1000;
+^
+main.c(21): warning: no previous extern declaration for non-static variable 'period' [-Wmissing-variable-declarations]
+double   period = 0;
+         ^
+main.c(21): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+double   period = 0;
+^
+main.c(22): warning: no previous extern declaration for non-static variable 'pflag' [-Wmissing-variable-declarations]
+uint32_t pflag=0;
+         ^
+main.c(22): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+uint32_t pflag=0;
+^
+main.c(23): warning: no previous extern declaration for non-static variable 'CCR_now' [-Wmissing-variable-declarations]
+double CCR_now = 0;
+       ^
+main.c(23): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+double CCR_now = 0;
+^
+main.c(24): warning: no previous extern declaration for non-static variable 'CCR_prev' [-Wmissing-variable-declarations]
+double CCR_prev = 0;
+       ^
+main.c(24): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+double CCR_prev = 0;
+^
+main.c(110): warning: no newline at end of file [-Wnewline-eof]
+        
+        ^
+main.c(79): warning: no previous prototype for function 'TIM2_IRQHandler' [-Wmissing-prototypes]
+void TIM2_IRQHandler(void){
+     ^
+main.c(79): note: declare 'static' if the function is not intended to be used outside of this translation unit
+void TIM2_IRQHandler(void){
+^
+static 
+11 warnings generated.
+compiling main.c...
+linking...
+Program Size: Code=7776 RO-data=616 RW-data=4 ZI-data=1684  
+FromELF: creating hex file...
+".\Objects\Tutorial_TIMER_InputCapture.axf" - 0 Error(s), 11 Warning(s).
+
+<h2>Software Packages used:</h2>
+
+Package Vendor: ARM
+                http://www.keil.com/pack/ARM.CMSIS.5.8.0.pack
+                ARM.CMSIS.5.8.0
+                CMSIS (Common Microcontroller Software Interface Standard)
+   * Component: CORE Version: 5.5.0
+
+Package Vendor: Keil
+                http://www.keil.com/pack/Keil.STM32F4xx_DFP.2.15.0.pack
+                Keil.STM32F4xx_DFP.2.15.0
+                STMicroelectronics STM32F4 Series Device Support, Drivers and Examples
+   * Component: Startup Version: 2.6.3
+
+<h2>Collection of Component include folders:</h2>
+  .\RTE\_Target_1
+  C:\Users\New\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include
+  C:\Users\New\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include
+
+<h2>Collection of Component Files used:</h2>
+
+   * Component: ARM::CMSIS:CORE:5.5.0
+
+   * Component: Keil::Device:Startup:2.6.3
+      Source file:   MDK\Device\Source\ARM\STM32F411xx_OPT.s
+      Source file:   MDK\Device\Source\ARM\STM32F4xx_OTP.s
+      Source file:   Drivers\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm\startup_stm32f411xe.s
+      Include file:  Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
+      Source file:   Drivers\CMSIS\Device\ST\STM32F4xx\Source\Templates\system_stm32f4xx.c
+Build Time Elapsed:  00:00:01
+</pre>
+</body>
+</html>

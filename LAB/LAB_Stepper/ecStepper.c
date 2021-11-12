@@ -16,7 +16,6 @@
 // Stepper Motor function
 uint32_t direction = 1; 
 uint32_t step_delay = 100; 
-uint32_t ustep_delay = 100000; 
 uint32_t step_per_rev = 64;
 uint32_t gear_ratio = 32;
 
@@ -128,7 +127,6 @@ void Stepper_setSpeed (long whatSpeed, int mode){      // rppm
 		else if(mode == HALF) step_mode = 2;
 	
 		step_delay = (uint32_t)(60000)/(step_per_rev * gear_ratio * step_mode * whatSpeed); // Convert rpm to milli sec
-		ustep_delay = (uint32_t)(60000000)/(step_per_rev * gear_ratio * step_mode * whatSpeed); // Convert rpm to micro sec
 }
 
 
@@ -138,8 +136,7 @@ void Stepper_step(int steps, int direction, int mode){
 	 uint32_t state_number = 0;
 	
 	 for(;myStepper._step_num>0;myStepper._step_num--){ // run for step size
-				//delay_ms(step_delay);                         // delay (step_delay); 
-				delay_us(ustep_delay);                        // delay (ustep_delay);
+				delay_ms(step_delay);                         // delay (step_delay); 
 		 
 				if (mode == FULL) state_number = FSM_full[state_number].next[!direction];
 				else if (mode == HALF) state_number = FSM_half[state_number].next[!direction]; 

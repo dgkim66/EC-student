@@ -55,7 +55,7 @@ void PWM_init(PWM_t *pwm, GPIO_TypeDef *port, int pin){
 
 // 3-2. Direction of Counter
 		//YOUR CODE GOES HERE
-		TIMx->CR1 |= TIM_CR1_DIR;    // Counting direction: 0 = up-counting, 1 = down-counting
+		TIMx->CR1 &= ~TIM_CR1_DIR;    // Counting direction: 0 = up-counting, 1 = down-counting
 	
 			
 // 4. Configure Timer Output mode as PWM
@@ -86,7 +86,7 @@ void PWM_init(PWM_t *pwm, GPIO_TypeDef *port, int pin){
 	}
 	else if(CHn == 4){
 		TIMx->CCMR2 &= ~TIM_CCMR2_OC4M;
-		TIMx->CCMR2 |= TIM_CCMR2_OC3M_1 | TIM_CCMR2_OC3M_2;
+		TIMx->CCMR2 |= TIM_CCMR2_OC4M_1 | TIM_CCMR2_OC4M_2;
 		TIMx->CCMR2 |= TIM_CCMR2_OC4PE;
 		TIMx->CCR4   = ccVal;
 		TIMx->CCER  &= ~TIM_CCER_CC4P;		
@@ -137,12 +137,36 @@ void PWM_pulsewidth_ms(PWM_t *pwm, float pulse_width_ms){
 	}
 }
 
+void PWM_pulsewidth_us(PWM_t *pwm, float pulse_width_us){ 
+	TIM_TypeDef *TIMx = pwm->timer;
+	int CHn = pwm->ch;
+	uint32_t fsys = 0;
+	uint32_t psc=pwm->timer->PSC;
+	
+	// Check System CLK: PLL or HSI
+	if((RCC->CFGR & (3<<0)) == 2)      { fsys = 84; }   // for msec 84MHz/1000
+	else if((RCC->CFGR & (3<<0)) == 0) { fsys = 16; }
+	
+	//YOUR CODE GOES HERE
+	float fclk = fsys /(psc + 1);					              // fclk=fsys/(psc+1);
+	float ccval = pulse_width_us * fclk;			    		// width_us *fclk;
+	
+	//YOUR CODE GOES HERE
+	switch(CHn){
+		case 1: TIMx->CCR1 = ccval; break;
+		case 2: TIMx->CCR2 = ccval; break;
+		case 3: TIMx->CCR3 = ccval; break;
+		case 4: TIMx->CCR4 = ccval; break;
+		default: break;
+	}
+}
+
 
 void   PWM_duty(PWM_t *pwm, float duty) {                 //  duty=0 to 1	
 	
 		TIM_TypeDef *TIMx = pwm->timer;
 
-		float ccval = (TIMx->ARR + 1) * duty;    								// (ARR+1)*dutyRatio - 1          
+		uint32_t ccval = (TIMx->ARR + 1) * duty;    								// (ARR+1)*dutyRatio - 1          
 		int CHn = pwm->ch;
   
 		switch(CHn){
